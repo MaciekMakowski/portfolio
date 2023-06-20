@@ -166,7 +166,7 @@ const Contact = () => {
                                     <Box
                                         width={'100%'}
                                         display={"flex"}
-
+                                        justifyContent={"center"}
                                     >
                                         {windowSize.width < 1280 && (
                                             <Box
@@ -196,10 +196,9 @@ const Contact = () => {
                                     </Box>
                                     <Box display={"flex"}>
                                     <Typography display={"inline"} variant={'subtitle2'} color={theme.palette.secondary.main}>
-                                        Send me a message so that we can get in
-                                    </Typography>
-                                    <Typography display={"inline"} variant={'subtitle2'} fontWeight={"bolder"} color={theme.palette.secondary.main}>
+                                        Send me a message so that we can get in <Typography display={"inline"} variant={'subtitle2'} fontWeight={"bolder"} color={theme.palette.secondary.main}>
                                         touch
+                                    </Typography>
                                     </Typography>
                                     </Box>
                                 </Box>
