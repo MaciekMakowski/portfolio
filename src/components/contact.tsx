@@ -194,12 +194,14 @@ const Contact = () => {
                                         </Typography>
                                         </Box>
                                     </Box>
+                                    <Box display={"flex"}>
                                     <Typography display={"inline"} variant={'subtitle2'} color={theme.palette.secondary.main}>
                                         Send me a message so that we can get in
                                     </Typography>
                                     <Typography display={"inline"} variant={'subtitle2'} fontWeight={"bolder"} color={theme.palette.secondary.main}>
                                         touch
                                     </Typography>
+                                    </Box>
                                 </Box>
                                 <Box
                                     width={'100%'}
