@@ -13,9 +13,13 @@ import rightTop from "../imgs/theme/rightTop.png";
 import {useState} from "react";
 import {EduProps} from "./eduBig";
 
+type TechsHeaderProps ={
+    windowWidth:number
+    setOnExit:React.Dispatch<boolean>
 
-const TechsHeader = (props:EduProps) => {
-    const [onExit, setOnExit] = useState(false)
+}
+
+const TechsHeader = (props:TechsHeaderProps) => {
     const theme = useTheme()
 
     const handleOnClick = (section:string) => {
@@ -59,7 +63,7 @@ const TechsHeader = (props:EduProps) => {
                             flexDirection={"column"}
                             gap={3}
                         >
-                            <BackButton setOnExit={setOnExit}/>
+                            <BackButton setOnExit={props.setOnExit}/>
                             <Typography variant={"h6"} color={theme.palette.text.secondary} textAlign={"center"}>
                                 MY TECHS
                             </Typography>
@@ -171,7 +175,7 @@ const TechsHeader = (props:EduProps) => {
                                 backgroundRepeat:'no-repeat'
                             }}
                         >
-                            <BackButton setOnExit={setOnExit}/>
+                            <BackButton setOnExit={props.setOnExit}/>
                         </Box>
                         <Box
                             display={"flex"}

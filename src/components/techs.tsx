@@ -164,7 +164,7 @@ const Techs = () => {
                         p={3}
                         width={'100vw'}
                     >
-                        <TechsHeader windowWidth={windowSize.width}/>
+                        <TechsHeader windowWidth={windowSize.width} setOnExit={setOnExit} />
 
                         <Box
                             width={'100%'}
