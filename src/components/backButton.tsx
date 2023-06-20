@@ -22,12 +22,12 @@ const BackButton = (props:BackButtonProps) =>{
             color: [theme.palette.secondary.main, theme.palette.primary.main],
             transition: {
                 x: {
-                    delay:0.2,
-                    duration: 0.2
+                    delay:0.1,
+                    duration: 0.1
                 },
                 color: {
-                    delay:1,
-                    duration: 0.3,
+                    delay:0.5,
+                    duration: 0.2,
                     repeat: Infinity,
                     repeatType: 'reverse'
                 }
@@ -39,7 +39,7 @@ const BackButton = (props:BackButtonProps) =>{
         }
     };
     const variantArrowThree = {
-        visible:{x:24, transition:{duration:0.3, ease: 'linear', delay:0.4}},
+        visible:{x:24, transition:{duration:0.1, ease: 'linear', delay:0.2}},
         hidden: {x:48}
     }
     const variantButton = {
