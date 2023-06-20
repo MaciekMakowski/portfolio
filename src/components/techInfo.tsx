@@ -166,7 +166,7 @@ const TechInfo = (props:techInfoProps) => {
                     {props.desc.split(".").map((sentence,index) => {
                         if(index !== props.desc.split(".").length - 1){
                             return(
-                                <Typography key={index} variant={'body1'} color={theme.palette.text.primary} width={'100%'}>
+                                <Typography key={index} variant={'body2'} color={theme.palette.text.primary} width={'100%'}>
                                     {sentence}. <br/>
                                 </Typography>
                             )

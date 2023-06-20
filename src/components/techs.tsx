@@ -190,7 +190,7 @@ const Techs = () => {
                             })}
                         </Box>
                         <Box
-                            minHeight={windowSize.width < 1280 ? '11rem' : '17rem'}
+                            minHeight={windowSize.width < 1280 ? '11rem' : '10.5rem'}
                             width='100%'
                             display='flex'
                             justifyContent='center'
