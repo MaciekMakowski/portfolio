@@ -247,7 +247,7 @@ const Projects = () => {
                             })}
                         </Box>
                         <Box
-                            height='70%'
+                            height='80%'
                             width='100%'
                             display='flex'
                             justifyContent='center'
@@ -257,7 +257,7 @@ const Projects = () => {
                                     <Box
                                         display={"flex"}
                                         width='50%'
-                                        minHeight='11rem'
+                                        minHeight="11rem"
                                         alignItems={"end"}
                                     >
                                         <Box
