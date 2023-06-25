@@ -195,7 +195,7 @@ const Project = (props:ProjectProps) => {
                     props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? 'row'
                         : props.windowWidth && props.windowWidth < 1280 ? "column"
                             : 'row'}
-                    width={props.windowWidth && props.windowWidth < 1280 ? "100%" : '80%'}
+                    width={props.windowWidth && props.windowWidth < 1280 ? "100%" : '100%'}
                     gap={1}
                 >
                     <Box
@@ -204,8 +204,8 @@ const Project = (props:ProjectProps) => {
                             : props.windowWidth && props.windowWidth < 1280 ? "75%"
                                 : '100%'}
                         sx={{
-                            gap:{sx:0, lg:3},
-                            justifyContent:{sx:'space-between', lg:'start'}
+                            gap:{xs:0, lg:3},
+                            justifyContent:{xs:'space-between', lg:'start'}
                         }}
                     >
                             <Button href={props.git} variant={"outlined"}>
