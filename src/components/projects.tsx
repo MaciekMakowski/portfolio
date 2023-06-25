@@ -47,7 +47,7 @@ const ProjectsList = [
         small:smallC,
         git:"https://github.com/MaciekMakowski/Billenium-Clinic-Managment",
         doc:"https://github.com/MaciekMakowski/Billenium-Clinic-Managment/blob/dev/Dokumentacja%20StudentMed%20Backend%20API.docx",
-        visit:"#",
+        visit:"https://billenium-clinic-managment.vercel.app/",
     }
 ]
 
