@@ -200,12 +200,12 @@ const Project = (props:ProjectProps) => {
                 >
                     <Box
                         display={"flex"}
-                        justifyContent={"space-between"}
                         width={props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? '60%'
                             : props.windowWidth && props.windowWidth < 1280 ? "75%"
                                 : '100%'}
                         sx={{
-                            gap:{sx:0, lg:3}
+                            gap:{sx:0, lg:3},
+                            justifyContent:{sx:'space-between', lg:'start'}
                         }}
                     >
                             <Button href={props.git} variant={"outlined"}>
@@ -216,9 +216,14 @@ const Project = (props:ProjectProps) => {
                             </Button>
                     </Box>
                     <Box
+                        display={"flex"}
                         width={props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? '40%'
                             : props.windowWidth && props.windowWidth < 1280 ? "75%"
                                 : undefined}
+                        sx={{
+                            flexGrow:{lg:1},
+                            justifyContent:{lg:'end'}
+                        }}
                     >
                         <Button fullWidth href={props.visit} variant={"contained"}>
                             Visit
