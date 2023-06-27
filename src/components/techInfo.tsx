@@ -51,9 +51,9 @@ const TechInfo = (props:techInfoProps) => {
             width={'100%'}
             gap={2}
             sx={{
-                height:{xs:'fit-content'}
+                height:{xs:'fit-content'},
+                py:{sx:2, md:5}
             }}
-            py={5}
         >
             {isDesktop && (
                 <Box

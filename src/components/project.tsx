@@ -200,15 +200,15 @@ const Project = (props:ProjectProps) => {
                     sx={{
                         alignItems:{xs:'center', md:undefined},
                         justifyContent:{xs:'space-between', md:'center', lg:'space-between'},
-                        flexDirection:'row',
+                        flexDirection:{xs:"column" , md:'row'},
                     }}
                 >
                     <Box
                         display={"flex"}
                         sx={{
                             gap:{xs:3, md:3},
-                            justifyContent:'start',
-                            width:{xs:'65%', md: '100%', lg:'100%'}
+                            justifyContent: {xs:'space-between', md:'start'},
+                            width:{xs:'75%', md:'100%'}
                         }}
                     >
                             <Button href={props.git} variant={"outlined"}>
@@ -221,7 +221,7 @@ const Project = (props:ProjectProps) => {
                     <Box
                         display={"flex"}
                         sx={{
-                            flexGrow:{lg:1},
+                            width:{xs:'75%', md:'100%'},
                             justifyContent:{lg:'end'}
                         }}
                     >
