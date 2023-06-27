@@ -188,6 +188,11 @@ const Techs = () => {
                         >
                             {isMobile && (
                                 <Box
+                                    display={"flex"}
+                                    justifyContent={'center'}
+                                    alignItems={"start"}
+                                    boxSizing={'border-box'}
+                                    pt={2}
                                     minHeight='10rem'
                                     width='20rem'
                                     sx={{
@@ -195,7 +200,9 @@ const Techs = () => {
                                         backgroundRepeat:'no-repeat',
                                         backgroundSize:'contain'
                                     }}
-                                />
+                                >
+                                    <BackButton setOnExit={setOnExit}/>
+                                </Box>
 
                             )}
                             {isDesktop && (
