@@ -1,5 +1,5 @@
 import {motion, useAnimation, Variants} from "framer-motion";
-import {Box, Typography, useTheme} from '@mui/material'
+import {Box, Theme, Typography, useMediaQuery, useTheme} from '@mui/material'
 import leftTop from "../imgs/theme/leftTop.png";
 import rightTop from "../imgs/theme/rightTop.png";
 import {useNavigate} from "react-router-dom";
@@ -90,20 +90,10 @@ const Techs = () => {
     const duration = 1.5
     const [onExit, setOnExit] = useState(false)
     const [onEnter, setOnEnter] = useState(true)
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
 
-    useEffect(() => {
-        window.onresize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-    }, []);
-    const [isHover, setIsHover] = useState(false)
+
 
 
     const variantArrowTwo: Variants = {
@@ -164,13 +154,13 @@ const Techs = () => {
                         p={3}
                         width={'100vw'}
                     >
-                        <TechsHeader windowWidth={windowSize.width} setOnExit={setOnExit} />
+                        <TechsHeader setOnExit={setOnExit} />
 
                         <Box
                             width={'100%'}
                             sx={{
-                                overflowY:windowSize.width < 1280 && windowSize.width > windowSize.height ? undefined : "auto",
-                                overflowX:windowSize.width < 1280 && windowSize.width > windowSize.height ? 'visible' : "hidden"
+                                overflowY:{xs:"visible", md:'auto'},
+                                overflowX:{xs:'visible', md:'hidden'}
                             }}
                         >
                             {techs.map(tech => {
@@ -183,19 +173,19 @@ const Techs = () => {
                                         desc={tech.desc}
                                         animType={tech.animType}
                                         animTime={tech.animTime}
-                                        windowWidth={windowSize.width}
-                                        windowHeight={windowSize.height}
                                     />
                                 )
                             })}
                         </Box>
                         <Box
-                            minHeight={windowSize.width < 1280 ? '11rem' : '10.5rem'}
                             width='100%'
                             display='flex'
                             justifyContent='center'
+                            sx={{
+                                minHeight:{xs:'11rem', md:'10.5rem'}
+                            }}
                         >
-                            {windowSize.width < 1280 && (
+                            {isMobile && (
                                 <Box
                                     minHeight='10rem'
                                     width='20rem'
@@ -207,11 +197,11 @@ const Techs = () => {
                                 />
 
                             )}
-                            {windowSize.width >= 1280 && (
+                            {isDesktop && (
                                 <>
                                     <Box
                                         display={"flex"}
-                                        width='50%'
+                                        width='60%'
                                         minHeight='11rem'
                                         alignItems={"end"}
                                     >
@@ -227,7 +217,7 @@ const Techs = () => {
 
                                     <Box
                                         display={"flex"}
-                                        width='50%'
+                                        width='40%'
                                         justifyContent={'end'}
                                         alignItems={"end"}
                                     >

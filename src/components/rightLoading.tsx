@@ -7,19 +7,6 @@ import {useEffect, useState} from "react";
 
 const RightLoading = (props:SidesAnimProps) =>{
 
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        window.onresize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-    }, []);
 
     return(
         <Box
@@ -33,12 +20,13 @@ const RightLoading = (props:SidesAnimProps) =>{
                 component={motion.div}
                 animate={ props.isOpen && {x:['5px', "5px"],rotate:['5deg', '-5deg']}}
                 transition={{ duration:0.3, ease: 'linear', repeat:28, repeatType:'reverse'}}
-                width={windowSize.width < 1280 ? '7rem' : '15rem'}
-                height={windowSize.width < 1280 ? '7rem' : '15rem'}
                 sx={{
                     backgroundImage:`url(${car})`,
                     backgroundRepeat:'no-repeat',
-                    backgroundSize:'cover'
+                    backgroundSize:'cover',
+                    width:{xs:'7rem', md:'15rem'},
+                    height:{xs:'7rem', md:'15rem'},
+                    marginLeft:3
                 }}
             />
         </Box>

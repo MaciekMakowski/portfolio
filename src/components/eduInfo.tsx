@@ -1,4 +1,4 @@
-import {Box, Typography, useTheme} from "@mui/material";
+import {Box, Theme, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {motion} from "framer-motion";
 import {TypeAnimation} from "react-type-animation";
 import illustration from "../imgs/edu/illustration.png";
@@ -10,22 +10,23 @@ type EduInfoProps = {
     desc: string
 
     image?:string
-    windowWidth:number
 
 }
 
 const EduInfo = (props:EduInfoProps) => {
     const theme = useTheme()
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
     return(
         <Box
             zIndex={5}
             component={motion.div}
             initial={{ opacity: 0, width:0 }}
-            animate={{ opacity: 0.95, minWidth:props.windowWidth < 1280 ? '90%' : '25rem'}}
+            animate={{ opacity: 0.95, minWidth:isMobile ? '90%' : '25rem'}}
             transition={{ duration: props.duration - 0.5 }}
-            position={props.windowWidth < 1280 ? "initial" : "fixed"}
+            position={isMobile ? "initial" : "fixed"}
             maxWidth={"25rem"}
-            height={props.windowWidth < 1280 ? "fit-content" :'10rem'}
+            height={isMobile ? "fit-content" :'10rem'}
             p={3}
             border={`2px solid ${theme.palette.text.secondary}`}
             bgcolor={theme.palette.secondary.main}
@@ -58,13 +59,13 @@ const EduInfo = (props:EduInfoProps) => {
                 </Box>
                 <Typography variant={"body1"} color={theme.palette.text.primary} sx={{textShadow:'black 1px 1px 2px'}}>
                     <>
-                    {props.windowWidth >= 1280 && (
+                    {isDesktop && (
                         <TypeAnimation sequence={[
                             props.desc,
                             100
                         ]}/>
                     )}
-                    {props.windowWidth < 1280 && (
+                    {isMobile && (
                         props.desc
                     )}
                     </>

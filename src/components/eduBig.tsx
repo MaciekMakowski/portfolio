@@ -15,13 +15,10 @@ type iconInfo = {
     info:boolean
 }
 
-export type EduProps = {
-    windowWidth:number
-}
 
 
 
-const EduBig = (props:EduProps) => {
+const EduBig = () => {
     const theme = useTheme()
     const duration = 1
     const [databaseWindow, setDatabaseWindow] = useState<iconInfo>({animate:false,info:false})
@@ -60,7 +57,6 @@ const EduBig = (props:EduProps) => {
                         <EduInfo
                             duration={duration}
                             title={'Databases'}
-                            windowWidth={props.windowWidth}
                             desc={'During my education, I learned how to build, manage and design databases. I gained knowledge of how to create models how to combine them what are joins and how to use them effectively.'}/>
                     )}
                     <Box
@@ -120,7 +116,6 @@ const EduBig = (props:EduProps) => {
                             <EduInfo
                                 duration={duration}
                                 title={'Networking'}
-                                windowWidth={props.windowWidth}
                                 desc={'During my education, I learned how to build Internet networks, design local area networks and also how to configure network devices. I also became familiar with Windows Server and its capabilities.'}/>
                         )}
                         <Box
@@ -167,7 +162,6 @@ const EduBig = (props:EduProps) => {
                             <EduInfo
                                 duration={duration}
                                 title={'Graphics'}
-                                windowWidth={props.windowWidth}
                                 desc={'During my education, I learned the basics of Photoshop, Gimp and Figma. I can design application views or do relatively simple photo processing.'}/>
                         )}
                         <Box
@@ -246,7 +240,6 @@ const EduBig = (props:EduProps) => {
                             <EduInfo
                                 duration={duration}
                                 title={'Coding'}
-                                windowWidth={props.windowWidth}
                                 desc={'During my education I learned the basics of several programming languages such as C++, Python, JavaScript, Prolog and Java in addition HTML and CSS. I focused my development on Python and JavaScript regularly gaining new knowledge and expanding my skills.'}/>
                         )}
                         <Box
@@ -303,7 +296,6 @@ const EduBig = (props:EduProps) => {
                         <EduInfo
                             duration={duration}
                             title={'Operating systems'}
-                            windowWidth={props.windowWidth}
                             desc={'During my education, I gained basic knowledge in operating systems such as Windows (XP,7,10) and Linux. I can navigate through these systems, manage file permissions, perform basic operations and create scripts.'}/>
                     )}
                     <Box
@@ -325,7 +317,8 @@ const EduBig = (props:EduProps) => {
                                 repeatType: 'reverse',
                                 delay: duration + 8
                             }
-                        }}                                                width={'5rem'}
+                        }}
+                        width={'5rem'}
                         height={'5rem'}
                         sx={{
                             backgroundImage:`url(${settings})`,

@@ -1,5 +1,5 @@
 import {motion, useAnimation} from "framer-motion";
-import {Box, Button, Typography, useTheme} from "@mui/material";
+import {Box, Button, Theme, Typography, useMediaQuery, useTheme} from "@mui/material";
 import leftTop from "../imgs/theme/leftTop.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import rightTop from "../imgs/theme/rightTop.png";
@@ -64,19 +64,8 @@ const Projects = () => {
     const control = useAnimation();
     const [onExit, setOnExit] = useState(false)
     const [onEnter, setOnEnter] = useState(true)
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        window.onresize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-    }, []);
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
 
     const handleExit = () =>{
         setOnExit(true)
@@ -84,13 +73,6 @@ const Projects = () => {
 
     }
 
-    const handleChangeProject = (id:string) =>{
-        const element = document.getElementById(id)
-        if (element){
-            element.scrollIntoView({behavior:"smooth"})
-            setShowProject(ProjectsList[Number(id)])
-        }
-    }
 
 
     return (
@@ -124,17 +106,19 @@ const Projects = () => {
                         <Box
                             width='100%'
                             display='flex'
-                            justifyContent={windowSize.width < 1280 ? "center" : "space-between"}
+                            sx={{
+                                justifyContent:{xs:'center', md:'space-between'}
+                            }}
                         >
 
-                            {windowSize.width >= 1280 && (
+                            {isDesktop && (
                                 <>
                                     <Box
                                         display={"flex"}
                                         justifyContent={"center"}
                                         alignItems={"center"}
                                         minHeight='10rem'
-                                        width='25rem'
+                                        minWidth='25rem'
                                         sx={{
                                             backgroundImage:`url(${leftTop})`,
                                             backgroundRepeat:'no-repeat'
@@ -142,46 +126,19 @@ const Projects = () => {
                                     >
                                         <BackButton setOnExit={setOnExit}/>
                                     </Box>
-                                    {showProject.id !== 0 && (
-                                        <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            justifyContent={"center"}
-                                            flexDirection={"column"}
-                                            onClick={() => handleChangeProject((showProject.id-1).toString())}
-                                        >
-                                            <Box
-                                                display={"flex"}
-                                                alignItems={"center"}
-                                                flexDirection={"column"}
-                                                gap={2}
-                                                component={motion.div}
-                                                sx={{cursor:"pointer", opacity:0.3}}
-                                                animate={control}
-                                                variants={variantBoxLeft}
-                                                onMouseEnter={() => control.start("visible")}
-                                                onMouseLeave={() => control.start("hidden")}
-                                            >
-                                                <Box
-                                                    minHeight='3rem'
-                                                    minWidth='3rem'
-                                                    sx={{
-                                                        backgroundImage:`url(${arrow })`,
-                                                        backgroundRepeat:'no-repeat',
-                                                    }}
-                                                />
-                                                <Typography
-                                                    sx={{rotate:"90deg"}}
-                                                    variant={'h6'} color={theme.palette.text.secondary}
-                                                >
-                                                    MORE
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                    )}
+                                    <Box
+                                        display={"flex"}
+                                    >
+                                        <Typography variant={"h3"} color={theme.palette.text.secondary}>
+                                            My &nbsp;
+                                        </Typography>
+                                        <Typography variant={"h3"} fontWeight={"bolder"} color={theme.palette.text.secondary} >
+                                            Projects
+                                        </Typography>
+                                    </Box>
                                     <Box
                                         minHeight='15rem'
-                                        width='25rem'
+                                        minWidth='25rem'
                                         sx={{
                                             backgroundImage:`url(${rightTop})`,
                                             backgroundRepeat:'no-repeat'
@@ -190,7 +147,7 @@ const Projects = () => {
                                 </>
 
                             )}
-                        {windowSize.width < 1280 && (
+                        {isMobile && (
                             <Box
                                 display={"flex"}
                                 flexDirection={"column"}
@@ -219,10 +176,6 @@ const Projects = () => {
                             display={"flex"}
                             alignItems={"center"}
                             flexDirection={"column"}
-                            sx={{
-                                overflowY:windowSize.width < 1280 && windowSize.width > windowSize.height ? 'visible' : windowSize.width < 1280 ? "auto" : 'hidden',
-                                overflowX:windowSize.width < 1280 && windowSize.width > windowSize.height ? 'visible' : "hidden"
-                            }}
                             gap={4}
 
                         >
@@ -240,8 +193,6 @@ const Projects = () => {
                                         git={project.git}
                                         doc={project.doc}
                                         visit={project.visit}
-                                        windowWidth={windowSize.width}
-                                        windowHeight={windowSize.height}
                                     />
                                     )
                             })}
@@ -252,11 +203,11 @@ const Projects = () => {
                             display='flex'
                             justifyContent='center'
                         >
-                            {windowSize.width >= 1280 && (
+                            {isDesktop && (
                                 <>
                                     <Box
                                         display={"flex"}
-                                        width='50%'
+                                        width='60%'
                                         minHeight="11rem"
                                         alignItems={"end"}
                                     >
@@ -269,47 +220,9 @@ const Projects = () => {
                                             }}
                                         />
                                     </Box>
-                                    {showProject.id+1 < ProjectsList.length && (
-                                        <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            justifyContent={"center"}
-                                            flexDirection={"column"}
-                                            onClick={() => handleChangeProject((showProject.id+1).toString())}
-                                        >
-                                            <Box
-                                                display={"flex"}
-                                                alignItems={"center"}
-                                                flexDirection={"column"}
-                                                gap={2}
-                                                component={motion.div}
-                                                sx={{cursor:"pointer", opacity:0.3}}
-                                                animate={control}
-                                                variants={variantBoxLeft}
-                                                onMouseEnter={() => control.start("visible")}
-                                                onMouseLeave={() => control.start("hidden")}
-                                            >
-                                                <Typography
-                                                    sx={{rotate:"90deg"}}
-                                                    variant={'h6'} color={theme.palette.text.secondary}
-                                                >
-                                                    MORE
-                                                </Typography>
-                                                <Box
-                                                    minHeight='3rem'
-                                                    minWidth='3rem'
-                                                    sx={{
-                                                        backgroundImage:`url(${arrow })`,
-                                                        backgroundRepeat:'no-repeat',
-                                                        rotate:'180deg',
-                                                    }}
-                                                />
-                                            </Box>
-                                        </Box>
-                                    )}
                                     <Box
                                         display={"flex"}
-                                        width='50%'
+                                        width='40%'
                                         justifyContent={'end'}
                                         alignItems={"end"}
                                     >
@@ -326,7 +239,7 @@ const Projects = () => {
 
                                 </>
                             )}
-                            {windowSize.width < 1280 && (
+                            {isMobile && (
                                 <Box
                                     display={"flex"}
                                     justifyContent={"end"}

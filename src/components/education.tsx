@@ -1,5 +1,5 @@
 
-import {Box, Button, Typography, useTheme} from "@mui/material";
+import {Box, Button, Theme, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {motion} from "framer-motion";
 import leftTop from "../imgs/theme/leftTop.png";
@@ -44,20 +44,8 @@ const Education = () => {
     const [systemsWindow, setSystemsWindow] = useState<iconInfo>({animate:false, info:false})
     const [onExit, setOnExit] = useState(false)
     const [onEnter, setOnEnter] = useState(true)
-
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        window.onresize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-    }, []);
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
     const handleExit = () =>{
         setOnExit(true)
         navigate("/")
@@ -98,9 +86,11 @@ const Education = () => {
                 <Box
                     width='100%'
                     display='flex'
-                    justifyContent={windowSize.width < 1280 ? "center" : "space-between"}
+                    sx={{
+                        justifyContent:{xs:'center', md:'space-between'}
+                    }}
                 >
-                    {windowSize.width < 1280 && (
+                    {isMobile && (
                         <Box
                             justifyContent={"center"}
                             alignItems={"center"}
@@ -117,14 +107,14 @@ const Education = () => {
                         </Box>
 
                     )}
-                    {windowSize.width >= 1280 && (
+                    {isDesktop && (
                         <>
                             <Box
                                 display={"flex"}
                                 justifyContent={"center"}
                                 alignItems={"center"}
                                 minHeight='10rem'
-                                width='25rem'
+                                minWidth='25rem'
                                 sx={{
                                     backgroundImage:`url(${leftTop})`,
                                     backgroundRepeat:'no-repeat'
@@ -157,31 +147,35 @@ const Education = () => {
                 <Box>
                     <Box
                         display={"flex"}
-                        px={ windowSize.width < 1280 ? 1 : 10}
+                        sx={{
+                            px:{xs:5, md:10}
+                        }}
                     >
                         <Box
                             display='flex'
                             width='100%'
-                            flexDirection={windowSize.width < 1280 ? "column" : "row"}
-                            gap={windowSize.width < 1280 ? 10 : 0}
+                            sx={{
+                                flexDirection:{xs:'column', lg:'row'},
+                                gap:{xs:10, md:10},
+                                alignItems:'center'
+                            }}
 
                         >
                             <Box
                                 display={"flex"}
-                                width={windowSize.width < 1280 ? '100%' : '50%'}
+                                sx={{
+                                    width:{xs:'100%', md:'50%'}
+                                }}
                                 justifyContent={"center"}
                             >
-                                {windowSize.width >= 1280 && (
-                                    <EduBig windowWidth={windowSize.width}/>
+                                {isDesktop && (
+                                    <EduBig/>
                                 )}
-                                {
-                                    windowSize.width < 1280 && (
-                                        <EduMobile windowWidth={windowSize.width}/>
+                                {isMobile && (
+                                        <EduMobile />
                                     )}
                             </Box>
                             <Box
-                                marginTop={windowSize.width < 1280 ? 0 : -13}
-                                width={windowSize.width < 1280 ? "100%" : "50%"}
                                 display={"flex"}
                                 alignItems={'center'}
                                 component={motion.div}
@@ -190,9 +184,13 @@ const Education = () => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: duration }}
                                 gap={3}
+                                sx={{
+                                    marginTop:{xs:0,lg:-13},
+                                    width:{xs:'100%',lg:'50%'}
+                                }}
                             >
                                 <Box
-                                    minWidth={ windowSize.width < 1280 ? "90%" : '26rem'}
+                                    minWidth={ isMobile ? "90%" : '26rem'}
                                     p={3}
                                     border={`2px solid ${theme.palette.text.secondary}`}
                                     borderRadius={'10px'}
@@ -246,7 +244,7 @@ const Education = () => {
                                     </Box>
                                 </Box>
                                 <Box
-                                    minWidth={ windowSize.width < 1280 ? "90%" : '26rem'}
+                                    minWidth={ isMobile ? "90%" : '26rem'}
                                     p={3}
                                     border={`2px solid ${theme.palette.text.secondary}`}
                                     borderRadius={'10px'}
@@ -303,7 +301,7 @@ const Education = () => {
                     display='flex'
                     justifyContent='center'
                 >
-                    {windowSize.width < 1280 && (
+                    {isMobile && (
                         <Box
                             minHeight='10rem'
                             width='20rem'
@@ -315,11 +313,11 @@ const Education = () => {
                         />
 
                     )}
-                    {windowSize.width >= 1280 && (
+                    {isDesktop && (
                         <>
                             <Box
                                 display={"flex"}
-                                width='50%'
+                                width='60%'
                                 minHeight='11rem'
                                 alignItems={"end"}
                             >
@@ -335,7 +333,7 @@ const Education = () => {
 
                             <Box
                                 display={"flex"}
-                                width='50%'
+                                width='40%'
                                 justifyContent={'end'}
                                 alignItems={"end"}
                             >

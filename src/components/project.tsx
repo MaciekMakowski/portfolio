@@ -17,8 +17,6 @@ export type ProjectProps = {
     git:string,
     doc:string,
     visit:string
-    windowWidth?:number
-    windowHeight?:number
 }
 
 
@@ -85,23 +83,29 @@ const Project = (props:ProjectProps) => {
             alignItems={"center"}
             justifyContent={"center"}
             flexDirection={"column"}
-            height={props.windowWidth && props.windowWidth < 1280 ? '45rem' : 'fit-content'}
+            sx={{
+                height:{xs:'45rem', md:'fit-content'}
+            }}
         >
         <Box
             boxSizing={"border-box"}
-            width={props.windowWidth && props.windowWidth < 1280 ? '100%' :'80%'}
             display={"flex"}
-            flexDirection={props.windowWidth && props.windowWidth < 1280 ? "column" : "row"}
-            p={props.windowWidth && props.windowWidth < 1280 ? 1 : 5}
             gap={3}
+            sx={{
+                width:{xs:'100%', md:'80%'},
+                flexDirection:{xs:'column', md:'row'},
+                p:{xs:1, md:5}
+            }}
         >
             <Box
-                width={props.windowWidth && props.windowWidth < 1280 ? "100%" : '50%'}
                 display={"flex"}
                 flexDirection={"column"}
                 component={motion.div}
                 animate={control}
                 variants={variantBoxLeft}
+                sx={{
+                    width:{xs:"100%", md:'50%'}
+                }}
             >
                 <Box
                     display={"flex"}
@@ -132,8 +136,10 @@ const Project = (props:ProjectProps) => {
                     // animate={control}
                     // variants={variantImage}
                     display={"flex"}
-                    justifyContent={props.windowWidth && props.windowWidth < 1280 ? "center" : undefined}
                     alignItems={"end"}
+                    sx={{
+                        justifyContent:{xs:'center', md:undefined}
+                    }}
                 >
                     <Box
                         zIndex={3}
@@ -172,40 +178,37 @@ const Project = (props:ProjectProps) => {
                 animate={control}
                 variants={variantBoxRight}
                 display={"flex"}
-                width={props.windowWidth && props.windowWidth < 1280 ? '100%' : '50%'}
                 justifyContent={"space-evenly"}
                 flexDirection={"column"}
                 gap={1}
-                py={props.windowWidth && props.windowWidth < 1280 ? 0 : 2}
+                sx={{
+                    width:{xs:'100%', md:'50%'},
+                    py:{xs:0, md:2}
+                }}
             >
                 <Typography
                     variant={"subtitle2"}
                     color={theme.palette.text.primary}
-                    width={props.windowWidth && props.windowWidth < 1280 ? "100%" : '100%'}
+                    width={'100%'}
                 >
                     {props.desc}
                 </Typography>
                 <Box
                     display={"flex"}
-                    alignItems={ props.windowWidth && props.windowWidth < 1280 ? 'center' : undefined}
-                    justifyContent={ props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? 'space-between'
-                        : props.windowWidth && props.windowWidth < 1280 ? "center"
-                            : 'space-between'}
-                    flexDirection={
-                    props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? 'row'
-                        : props.windowWidth && props.windowWidth < 1280 ? "column"
-                            : 'row'}
-                    width={props.windowWidth && props.windowWidth < 1280 ? "100%" : '100%'}
+                    width={'100%'}
                     gap={1}
+                    sx={{
+                        alignItems:{xs:'center', md:undefined},
+                        justifyContent:{xs:'space-between', md:'center', lg:'space-between'},
+                        flexDirection:'row',
+                    }}
                 >
                     <Box
                         display={"flex"}
-                        width={props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? '60%'
-                            : props.windowWidth && props.windowWidth < 1280 ? "75%"
-                                : '100%'}
                         sx={{
-                            gap:{xs:0, lg:3},
-                            justifyContent:{xs:'space-between', lg:'start'}
+                            gap:{xs:3, md:3},
+                            justifyContent:'start',
+                            width:{xs:'65%', md: '100%', lg:'100%'}
                         }}
                     >
                             <Button href={props.git} variant={"outlined"}>
@@ -217,9 +220,6 @@ const Project = (props:ProjectProps) => {
                     </Box>
                     <Box
                         display={"flex"}
-                        width={props.windowWidth && props.windowHeight && props.windowWidth < 1280 && props.windowWidth > props.windowHeight ? '40%'
-                            : props.windowWidth && props.windowWidth < 1280 ? "75%"
-                                : undefined}
                         sx={{
                             flexGrow:{lg:1},
                             justifyContent:{lg:'end'}

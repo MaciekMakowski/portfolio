@@ -1,4 +1,4 @@
-import {Box, Typography, useTheme} from "@mui/material";
+import {Box, Theme, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {motion, useAnimation} from "framer-motion";
 import {useInView} from "react-intersection-observer";
 import {useEffect} from "react";
@@ -10,8 +10,6 @@ type techInfoProps = {
     desc:string,
     animType:string,
     animTime:number
-    windowWidth:number
-    windowHeight:number
 }
 
 const variantImage = {
@@ -29,6 +27,8 @@ const variantLine = {
 const TechInfo = (props:techInfoProps) => {
     const theme = useTheme()
     const [ref, inView] = useInView()
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
     const control = useAnimation()
 
     useEffect(() => {
@@ -49,10 +49,13 @@ const TechInfo = (props:techInfoProps) => {
             alignItems={"center"}
             justifyContent={"center"}
             width={'100%'}
-            height={props.windowWidth < 1280 && props.windowWidth ? 'fit-content': '30rem'}
             gap={2}
+            sx={{
+                height:{xs:'fit-content'}
+            }}
+            py={5}
         >
-            {props.windowWidth >= 1280 && (
+            {isDesktop && (
                 <Box
                     display={"flex"}
                     height={'100%'}
@@ -117,7 +120,7 @@ const TechInfo = (props:techInfoProps) => {
                     </Box>
                 </Box>
             )}
-            {props.windowWidth < 1280 && (
+            {isMobile && (
                 <Box
                     component={motion.div}
                     initial={'hidden'}

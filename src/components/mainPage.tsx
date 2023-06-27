@@ -1,4 +1,4 @@
-import {Box, Button, Link, Stack, Typography, useTheme} from "@mui/material";
+import {Box, Button, Link, Stack, Typography, useTheme, useMediaQuery, Theme} from "@mui/material";
 import leftTop from '../imgs/theme/leftTop.png'
 import leftBottom from '../imgs/theme/leftBottom.png'
 import rightTop from '../imgs/theme/rightTop.png'
@@ -18,7 +18,7 @@ import gitLogo from "../imgs/git/gitLogo.png";
 import {useNavigate} from "react-router-dom";
 import mobileTop from '../imgs/theme/mobileTop.png'
 import mobileBottom from '../imgs/theme/mobileBottom.png'
-import {useEffect,useState} from "react";
+import {useState} from "react";
 import LeftLoading from "./leftLoading";
 import RightLoading from "./rightLoading";
 
@@ -28,26 +28,15 @@ const Main = () => {
     const duration = 1.5
     const [onExit, setOnExit] = useState(false)
     const [onEnter, setOnEnter] = useState(true)
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
+
 
     const handleExit = (link:string) =>{
         setOnExit(true)
         navigate(link)
 
     }
-
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        window.onresize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-    }, []);
 
     return (
         <Box
@@ -77,9 +66,11 @@ const Main = () => {
                 <Box
                     width='100%'
                     display='flex'
-                    justifyContent={windowSize.width < 1280 ? "center" : "space-between"}
+                    sx={{
+                        justifyContent:{xs:'center', md:'space-between'}
+                    }}
                 >
-                    {windowSize.width < 1280 && (
+                    {isMobile && (
                         <Box
                             minHeight='10rem'
                             width='20rem'
@@ -91,7 +82,7 @@ const Main = () => {
                         />
 
                     )}
-                    {windowSize.width >= 1280 && (
+                    {isDesktop && (
                         <>
                             <Box
                                 minHeight='10rem'
@@ -117,21 +108,27 @@ const Main = () => {
                 >
                     <Box
                         display={"flex"}
-                        px={windowSize.width < 1280 ? 1 : 10}
+                        sx={{
+                            px:{xs:5, lg:10}
+                        }}
                     >
                         <Box
                             display='flex'
                             width='100%'
-                            flexDirection={windowSize.width < 1280 ? "column" : "row"}
+                            sx={{
+                                flexDirection:{xs:'column', md:'row'}
+                            }}
                             justifyContent={"center"}
                             gap={3}
                         >
                             <Stack
-                                width={windowSize.width < 1280 ? "100%" : "50%"}
                                 display='flex'
                                 flexDirection='column'
-                                alignItems={windowSize.width < 1280 ? "center" : ""}
                                 spacing={5}
+                                sx={{
+                                    width:{xs:'100%', lg:'50%'},
+                                    alginItems:{xs:'center', md:''}
+                                }}
                             >
                                 <Box>
                                     <Box
@@ -164,7 +161,13 @@ const Main = () => {
                                 <Box
                                     display={"flex"}
                                 >
-                                    <Typography variant={windowSize.width < 1280 ? "subtitle1" : "h6"} width={'100%'} color={theme.palette.text.primary} minHeight={'60px'}>
+                                    <Typography
+                                        width={'100%'}
+                                        color={theme.palette.text.primary}
+                                        minHeight={'60px'}
+                                        sx={{
+                                            variant:{xs:'subtitle1', md:'h6'}
+                                        }}>
                                         <TypeAnimation sequence={[
                                             'I am a computer science student who specialize in frontend, my main working environment is React and HTML with CSS and TS.',
                                             100
@@ -174,9 +177,9 @@ const Main = () => {
                                 <Box
                                     display={"flex"}
                                     gap={3}
-                                    flexDirection={windowSize.width < 1280 ? "column" : "row"}
-
-                                >
+                                    sx={{
+                                        flexDirection:{xs:'column', md:'row'}
+                                    }}>
                                     <Button variant={"outlined"} onClick={() => handleExit("/education")}>Education</Button>
                                     <Button variant={"outlined"} onClick={() => handleExit("/myTechs")}>My techs</Button>
                                     <Button variant={"outlined"} onClick={() => handleExit("/projects")}>Projects</Button>
@@ -187,12 +190,12 @@ const Main = () => {
                                     display={'flex'}
                                     gap={3}
                                     alignItems={"center"}
-                                    flexDirection={windowSize.width < 1280 ? "column" : "row"}
+                                    flexDirection={"row"}
+                                    sx={{
+                                        justifyContent:{xs:'center', md:'start'}
+                                    }}
+                                    flexWrap={"wrap"}
                                 >
-                                    <Box
-                                        display={'flex'}
-                                        gap={3}
-                                    >
                                         <Box
                                             height='4rem'
                                             width='4rem'
@@ -220,11 +223,6 @@ const Main = () => {
                                                 backgroundSize:'contain'
                                             }}
                                         />
-                                    </Box>
-                                    <Box
-                                        display={'flex'}
-                                        gap={3}
-                                    >
                                         <Box
                                             height='4rem'
                                             width='4rem'
@@ -260,7 +258,6 @@ const Main = () => {
                                             }}
                                         />
                                     </Box>
-                                    </Box>
                                     <Box
                                         height='4rem'
                                         width='4rem'
@@ -273,7 +270,6 @@ const Main = () => {
                                 </Box>
                             </Stack>
                             <Box
-                                width={windowSize.width < 1280 ? "100%" : "50"}
                                 display={"flex"}
                                 alignItems={'center'}
                                 flexDirection={"column"}
@@ -282,14 +278,17 @@ const Main = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 2 }}
                                 gap={3}
+                                sx={{
+                                    width:{xs:'100%', md:'50%'}
+                                }}
                             >
                                 <Box
-                                    width={ windowSize.width < 1280 ? '16rem' :'26rem'}
-                                    height={windowSize.width < 1280 ? '14rem' : '22rem'}
                                     sx={{
                                         backgroundImage:`url(${avatar})`,
                                         backgroundRepeat:'no-repeat',
-                                        backgroundSize:'contain'
+                                        backgroundSize:'contain',
+                                        width:{xs:'16rem', lg:'26rem'},
+                                        height:{xs:'14rem', lg:'22rem'}
                                     }}
                                 />
                                 <Box
@@ -320,23 +319,23 @@ const Main = () => {
                     display='flex'
                     justifyContent='center'
                 >
-                    {windowSize.width < 1280 && (
+                    {isMobile && (
                         <Box
                             minHeight='10rem'
                             width='20rem'
                             sx={{
-                                backgroundImage:`url(${mobileBottom})`,
-                                backgroundRepeat:'no-repeat',
-                                backgroundSize:'contain'
+                                backgroundImage: `url(${mobileBottom})`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'contain'
                             }}
                         />
-
                     )}
-                    {windowSize.width >= 1280 && (
+
+                    {isDesktop && (
                         <>
                             <Box
                                 display={"flex"}
-                                width='50%'
+                                width='60%'
                                 minHeight='11rem'
                                 alignItems={"end"}
                             >
@@ -344,15 +343,15 @@ const Main = () => {
                                     width='30rem'
                                     minHeight={'11rem'}
                                     sx={{
-                                        backgroundImage:`url(${leftBottom})`,
-                                        backgroundRepeat:'no-repeat',
+                                        backgroundImage: `url(${leftBottom})`,
+                                        backgroundRepeat: 'no-repeat',
                                     }}
                                 />
                             </Box>
 
                             <Box
                                 display={"flex"}
-                                width='50%'
+                                width='40%'
                                 justifyContent={'end'}
                                 alignItems={"end"}
                             >
@@ -360,11 +359,10 @@ const Main = () => {
                                     width='17rem'
                                     minHeight='11rem'
                                     sx={{
-                                        backgroundImage:`url(${rightBottom})`,
-                                        backgroundRepeat:'no-repeat',
+                                        backgroundImage: `url(${rightBottom})`,
+                                        backgroundRepeat: 'no-repeat',
                                     }}
                                 />
-
                             </Box>
                         </>
                     )}

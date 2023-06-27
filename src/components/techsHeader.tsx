@@ -1,4 +1,4 @@
-import {Box, Typography, useTheme} from "@mui/material";
+import {Box, Theme, Typography, useMediaQuery, useTheme} from "@mui/material";
 import mobileTop from "../imgs/theme/mobileTop.png";
 import BackButton from "./backButton";
 import leftTop from "../imgs/theme/leftTop.png";
@@ -10,17 +10,16 @@ import muiLogo from "../imgs/techs/muiLogo.png";
 import figmaLogo from "../imgs/techs/figmaLogo.png";
 import pyLogo from "../imgs/techs/pyLogo.png";
 import rightTop from "../imgs/theme/rightTop.png";
-import {useState} from "react";
-import {EduProps} from "./eduBig";
 
 type TechsHeaderProps ={
-    windowWidth:number
     setOnExit:React.Dispatch<boolean>
 
 }
 
 const TechsHeader = (props:TechsHeaderProps) => {
     const theme = useTheme()
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
 
     const handleOnClick = (section:string) => {
         const element = document.getElementById(section)
@@ -34,9 +33,11 @@ const TechsHeader = (props:TechsHeaderProps) => {
             <Box
                 width='100%'
                 display='flex'
-                justifyContent={props.windowWidth < 1280 ? "center" : 'space-between'}
+                sx={{
+                    justifyContent:{xs:'center', md:'space-between'}
+                }}
             >
-                {props.windowWidth < 1280 && (
+                {isMobile && (
                     <Box
                         flexDirection={"column"}
                         display={"flex"}
@@ -162,14 +163,14 @@ const TechsHeader = (props:TechsHeaderProps) => {
                     </Box>
 
                 )}
-                {props.windowWidth >= 1280 && (
+                {isDesktop && (
                     <>
                         <Box
                             display={"flex"}
                             justifyContent={"center"}
                             alignItems={"center"}
                             minHeight='10rem'
-                            width='25rem'
+                            minWidth='25rem'
                             sx={{
                                 backgroundImage:`url(${leftTop})`,
                                 backgroundRepeat:'no-repeat'

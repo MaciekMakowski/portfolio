@@ -1,6 +1,6 @@
 import {motion, useAnimation} from "framer-motion";
 import LeftLoading from "./leftLoading";
-import {Box, Typography, FormControl, useTheme, TextField ,Button} from "@mui/material";
+import {Box, Typography, FormControl, useTheme, TextField, Button, useMediaQuery, Theme} from "@mui/material";
 import leftBottom from "../imgs/theme/leftBottom.png";
 import rightBottom from "../imgs/theme/rightBottom.png";
 import RightLoading from "./rightLoading";
@@ -26,19 +26,8 @@ const Contact = () => {
     const [isError, setIsError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-    });
-
-    useEffect(() => {
-        window.onresize = () => {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-    }, []);
+    const isMobile = useMediaQuery((theme:Theme) => theme.breakpoints.between("xs", "md"));
+    const isDesktop = useMediaQuery((theme:Theme) => theme.breakpoints.up("md"));
     const sendEmail = (e:any) => {
         e.preventDefault();
         if(form.current){
@@ -97,9 +86,11 @@ const Contact = () => {
                         <Box
                             width='100%'
                             display='flex'
-                            justifyContent={windowSize.width < 1280 ? "center" : "space-between"}
+                            sx={{
+                                justifyContent:{xs:'center', md:'space-between'}
+                            }}
                         >
-                            {windowSize.width < 1280 && (
+                            {isMobile && (
                                 <Box
                                     justifyContent={"center"}
                                     alignItems={"center"}
@@ -116,7 +107,7 @@ const Contact = () => {
                                 </Box>
 
                             )}
-                            {windowSize.width >= 1280 && (
+                            {isDesktop && (
                                 <>
                                     <Box
                                         display={"flex"}
@@ -150,12 +141,14 @@ const Contact = () => {
                             alignItems={"center"}
                         >
                             <Box
-                                width={windowSize.width < 1280 ? '20rem' : "40rem"}
                                 border={`2px solid ${theme.palette.primary.main}`}
                                 borderRadius={5}
                                 display={"flex"}
                                 flexDirection={"column"}
                                 alignItems={"center"}
+                                sx={{
+                                    width:{sx:'20rem', md:'40rem'}
+                                }}
                             >
                                 <Box
                                     display={"flex"}
@@ -168,7 +161,7 @@ const Contact = () => {
                                         display={"flex"}
                                         justifyContent={"center"}
                                     >
-                                        {windowSize.width < 1280 && (
+                                        {isMobile && (
                                             <Box
                                                 display={"flex"}
                                                 justifyContent={"center"}
@@ -205,10 +198,14 @@ const Contact = () => {
                                 <Box
                                     width={'100%'}
                                     display={"flex"}
-                                    flexDirection={windowSize.width < 1280 ? 'column' : 'row'}
+                                    sx={{
+                                        flexDirection:{xs:'column', md:'row'}
+                                    }}
                                 >
                                     <Box
-                                        width={windowSize.width < 1280 ? '100%' : '50%'}
+                                        sx={{
+                                            width:{sx:'100%', md:'50%'}
+                                        }}
                                         boxSizing={"border-box"}
                                         p={2}
                                     >
@@ -252,7 +249,6 @@ const Contact = () => {
                                                             },
                                                         }}
                                                     />
-                                                    <Button type={"submit"} variant={"contained"}>Send</Button>
                                                     {isSended && (
                                                         <Typography variant={"caption"} color={theme.palette.primary.main}>
                                                             <TypeAnimation sequence={[
@@ -269,13 +265,14 @@ const Contact = () => {
                                                             ]}/>
                                                         </Typography>
                                                     )}
+                                                    <Button type={"submit"} variant={"contained"}>Send</Button>
                                                 </Box>
 
                                             </FormControl>
                                         </form>
 
                                     </Box>
-                                    {windowSize.width >= 1280 && (
+                                    {isDesktop && (
                                         <Box
                                             display={"flex"}
                                             justifyContent={"center"}
@@ -306,7 +303,7 @@ const Contact = () => {
                             alignItems={"end"}
                             justifyContent={"center"}
                         >
-                            {windowSize.width < 1280 && (
+                            {isMobile && (
                                 <Box
                                     minHeight='10rem'
                                     width='20rem'
@@ -318,11 +315,11 @@ const Contact = () => {
                                 />
 
                             )}
-                            {windowSize.width >= 1280 && (
+                            {isDesktop && (
                                 <>
                                     <Box
                                         display={"flex"}
-                                        width='50%'
+                                        width='60%'
                                         height='100%'
                                         alignItems={"end"}
                                     >
@@ -338,7 +335,7 @@ const Contact = () => {
 
                                     <Box
                                         display={"flex"}
-                                        width='50%'
+                                        width='40%'
                                         justifyContent={'end'}
                                         alignItems={"end"}
                                     >
