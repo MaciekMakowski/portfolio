@@ -160,7 +160,8 @@ const Techs = () => {
                             width={'100%'}
                             sx={{
                                 overflowY:{xs:"visible", md:'auto'},
-                                overflowX:{xs:'visible', md:'hidden'}
+                                overflowX:{xs:'visible', md:'hidden'},
+                                minHeight:{md:'30rem'}
                             }}
                         >
                             {techs.map(tech => {
