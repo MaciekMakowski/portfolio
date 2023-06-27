@@ -148,7 +148,7 @@ const Main = () => {
                                             }}
                                         ></Box>
                                         <Typography variant="h6" color={theme.palette.text.primary}>
-                                            im
+                                            i'm
                                         </Typography>
                                     </Box>
                                     <Typography variant="h2" color={theme.palette.text.primary}>
