@@ -169,8 +169,8 @@ const Main = () => {
                                             variant:{xs:'subtitle1', md:'h6'}
                                         }}>
                                         <TypeAnimation sequence={[
-                                            'I am a computer science student who specialize in frontend, my main working environment is React and HTML with CSS and TS.',
-                                            100
+                                            'I am a computer science student who specialize in frontend, my main working environment is React and HTML with CSS and TypeScript.',
+                                            80
                                         ]}/>
                                     </Typography>
                                 </Box>

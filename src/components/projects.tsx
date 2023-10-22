@@ -36,6 +36,7 @@ const ProjectsList = [
         git:"https://github.com/MaciekMakowski/Billenium-Project-UWM",
         doc:"https://github.com/MaciekMakowski/Billenium-Project-UWM/blob/transition_3/documentation/Transition%203/User%20Guide%20for%20Kanban%20Board.pdf",
         visit:"https://magikanban.up.railway.app/",
+        techs:'React, TypeScript, Material UI, Framer Motion, React Router, React-beautiful-dnd, CSS, HTML5, i18next, Vite, Axios , REST-API'
     },
     {
         id:1,
@@ -48,6 +49,7 @@ const ProjectsList = [
         git:"https://github.com/MaciekMakowski/Billenium-Clinic-Managment",
         doc:"https://github.com/MaciekMakowski/Billenium-Clinic-Managment/blob/dev/Dokumentacja%20StudentMed%20Backend%20API.docx",
         visit:"https://billenium-clinic-managment.vercel.app/",
+        techs:"React, TypeScript, MANTINE, React Router, CSS, HTML5, Vite, Axios , REST-API, Nivo, Zod, React-pdf"
     }
 ]
 
@@ -60,7 +62,6 @@ const Projects = () => {
     const theme = useTheme()
     const navigate = useNavigate()
     const duration = 1.5
-    const [showProject, setShowProject] = useState<ProjectProps>(ProjectsList[0])
     const control = useAnimation();
     const [onExit, setOnExit] = useState(false)
     const [onEnter, setOnEnter] = useState(true)
@@ -193,6 +194,7 @@ const Projects = () => {
                                         git={project.git}
                                         doc={project.doc}
                                         visit={project.visit}
+                                        techs={project.techs}
                                     />
                                     )
                             })}

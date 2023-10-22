@@ -16,7 +16,8 @@ export type ProjectProps = {
     small:string
     git:string,
     doc:string,
-    visit:string
+    visit:string,
+    techs:string
 }
 
 
@@ -24,10 +25,6 @@ const Project = (props:ProjectProps) => {
     const theme = useTheme()
     const [ref, inView] = useInView();
     const control = useAnimation();
-    // const componentRef = useRef(null);
-    // const [componentData, setComponentData] = useState({x:0,y:0,w:0,h:0})
-    // const [isMouseOn, setIsMouseOn] = useState(false)
-    // const [localCoords, setLocalCoords] = useState({x: 0, y: 0});
 
     const variantBoxLeft= {
         visible:{x:0, transition:{duration:2}},
@@ -37,35 +34,6 @@ const Project = (props:ProjectProps) => {
         visible:{x:0, transition:{duration:2}},
         hidden:{x:window.innerWidth}
     }
-
-    // const variantImage= {
-    //     visible:{rotateY:(localCoords.x - componentData.x - (componentData.w/2))/10},
-    //     hidden:{rotateX:0, rotateY: 0}
-    // }
-
-    // const handleMouseOnImg = (event:any) =>
-    // {
-    //     if(isMouseOn){
-    //         if(event && componentRef !== null){
-    //             // @ts-ignore
-    //             setComponentData({
-    //                 x: componentRef.current.getBoundingClientRect().x,
-    //                 y: componentRef.current.getBoundingClientRect().y,
-    //                 w:componentRef.current.getBoundingClientRect().width,
-    //                 h:componentRef.current.getBoundingClientRect().height
-    //             })
-    //             setLocalCoords({
-    //                 x: event.clientX ,
-    //                 y: event.clientY,
-    //             });
-    //             console.log(componentData)
-    //         }
-    //     }
-    // }
-    // const handleMouseLeaveImg = (event:any) =>
-    // {
-    //         setIsMouseOn(false)
-    // }
 
     useEffect(() => {
         if (inView) {
@@ -129,12 +97,6 @@ const Project = (props:ProjectProps) => {
                     </Box>
                 </Box>
                 <Box
-                    // onMouseEnter={() => setIsMouseOn(true)}
-                    // onMouseLeave={handleMouseLeaveImg}
-                    // onMouseMove={handleMouseOnImg}
-                    // component={motion.div}
-                    // animate={control}
-                    // variants={variantImage}
                     display={"flex"}
                     alignItems={"end"}
                     sx={{
@@ -193,6 +155,14 @@ const Project = (props:ProjectProps) => {
                 >
                     {props.desc}
                 </Typography>
+                <Box>
+                    <Typography variant={"subtitle2"} color={theme.palette.text.secondary}>
+                        Technologies
+                    </Typography>
+                    <Typography variant={"subtitle2"} color={theme.palette.text.primary}>
+                        {props.techs}
+                    </Typography>   
+                </Box>
                 <Box
                     display={"flex"}
                     width={'100%'}
