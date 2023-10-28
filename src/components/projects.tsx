@@ -1,28 +1,28 @@
-import {motion, useAnimation} from "framer-motion";
 import {Box, Button, Theme, Typography, useMediaQuery, useTheme} from "@mui/material";
-import leftTop from "../imgs/theme/leftTop.png";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import rightTop from "../imgs/theme/rightTop.png";
-import leftBottom from "../imgs/theme/leftBottom.png";
-import rightBottom from "../imgs/theme/rightBottom.png";
-import {useNavigate} from "react-router-dom";
-import bigC from "../imgs/projects/big_c.png"
-import midC from "../imgs/projects/mid_c.png"
-import smallC from "../imgs/projects/small_c.png"
-import bigK from "../imgs/projects/big_k.png"
-import midK from "../imgs/projects/mid_k.png"
-import smallK from "../imgs/projects/small_k.png"
-import arrow from "../imgs/projects/arrow.png"
 import Project, {ProjectProps} from "./project";
+import {motion, useAnimation} from "framer-motion";
 import {useEffect, useState} from "react";
-import car from "../imgs/theme/car.png";
-import push from "../imgs/theme/push.png";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BackButton from "./backButton";
 import LeftLoading from "./leftLoading";
 import RightLoading from "./rightLoading";
-import mobileTop from "../imgs/theme/mobileTop.png";
+import arrow from "../imgs/projects/arrow.png"
+import bigC from "../imgs/projects/big_c.png"
+import bigK from "../imgs/projects/big_k.png"
+import car from "../imgs/theme/car.png";
+import leftBottom from "../imgs/theme/leftBottom.png";
+import leftTop from "../imgs/theme/leftTop.png";
+import midC from "../imgs/projects/mid_c.png"
+import midK from "../imgs/projects/mid_k.png"
 import mobileBottom from "../imgs/theme/mobileBottom.png";
-
+import mobileTop from "../imgs/theme/mobileTop.png";
+import push from "../imgs/theme/push.png";
+import rightBottom from "../imgs/theme/rightBottom.png";
+import rightTop from "../imgs/theme/rightTop.png";
+import smallC from "../imgs/projects/small_c.png"
+import smallK from "../imgs/projects/small_k.png"
+import {useNavigate} from "react-router-dom";
 
 const ProjectsList = [
     {
@@ -35,7 +35,7 @@ const ProjectsList = [
         small:smallK,
         git:"https://github.com/MaciekMakowski/Billenium-Project-UWM",
         doc:"https://github.com/MaciekMakowski/Billenium-Project-UWM/blob/transition_3/documentation/Transition%203/User%20Guide%20for%20Kanban%20Board.pdf",
-        visit:"https://magikanban.up.railway.app/",
+        visit:"https://billenium-project-uwm.vercel.app/",
         techs:'React, TypeScript, Material UI, Framer Motion, React Router, React-beautiful-dnd, CSS, HTML5, i18next, Vite, Axios , REST-API'
     },
     {
