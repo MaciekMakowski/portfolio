@@ -35,7 +35,7 @@ const ProjectsList = [
         small:smallK,
         git:"https://github.com/MaciekMakowski/Billenium-Project-UWM",
         doc:"https://github.com/MaciekMakowski/Billenium-Project-UWM/blob/transition_3/documentation/Transition%203/User%20Guide%20for%20Kanban%20Board.pdf",
-        visit:"https://billenium-project-uwm.vercel.app/",
+        visit:"https://kanban.maciejmakowski.dev/",
         techs:'React, TypeScript, Material UI, Framer Motion, React Router, React-beautiful-dnd, CSS, HTML5, i18next, Vite, Axios , REST-API'
     },
     {
@@ -48,7 +48,7 @@ const ProjectsList = [
         small:smallC,
         git:"https://github.com/MaciekMakowski/Billenium-Clinic-Managment",
         doc:"https://github.com/MaciekMakowski/Billenium-Clinic-Managment/blob/dev/Dokumentacja%20StudentMed%20Backend%20API.docx",
-        visit:"https://billenium-clinic-managment.vercel.app/",
+        visit:"https://clinic.maciejmakowski.dev/",
         techs:"React, TypeScript, MANTINE, React Router, CSS, HTML5, Vite, Axios , REST-API, Nivo, Zod, React-pdf"
     }
 ]
