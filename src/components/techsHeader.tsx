@@ -1,6 +1,6 @@
 import { Box, Theme, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Express from "../imgs/techs/Express.png";
 import cssLogo from "../imgs/techs/cssLogo.png";
+import Express from "../imgs/techs/express.png";
 import figmaLogo from "../imgs/techs/figmaLogo.png";
 import htmlLogo from "../imgs/techs/htmlLogo.png";
 import muiLogo from "../imgs/techs/muiLogo.png";
